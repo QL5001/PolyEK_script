@@ -1,30 +1,30 @@
-#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis OG1RF strain for determining its bacterial growth-associated transcriptomic changes under the treatment of antimicrobial compounds.
+#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis strain for determining its growth-associated transcriptomic changes tirggered by Klebsiella pneumoniae strain in CAUTI polymicrobial community.
 #Beign#
+
 library(knitr)
 library(mixOmics)
 library(dplyr)
 library(stats)
 
+RNS_Growth = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open csv file "RNSGrowth_PCA" containing gene differential expression data of E. faecalis strain
 
-WGS_biofilm_0410 = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open file "group_top52_9h_Differential_Expression-PCA_240122"
-
-X = WGS_biofilm_0410[, 1:2947]  
+X = RNS_Growth[, 1:2947]  
 X_mean = apply(X, 2, mean)
 X_center = scale(X, center = X_mean, scale = FALSE)
-Y = WGS_biofilm_0410$Sample
+Y = RNS_Growth$Sample
 
-pca.WGS = pca(X_center, ncomp = 6, center = FALSE, scale = FALSE)
+pca.RNS = pca(X_center, ncomp = 6, center = FALSE, scale = FALSE)
+plot(pca.RNS, ylim = c(0, 0.8), main = "PCA on WGS")
 
-plot(pca.WGS, ylim = c(0, 0.8), main = "PCA on WGS")
-
-
-ev = pca.WGS$prop_expl_var   #explained_variance
+ev = pca.RNS$prop_expl_var   #explained_variance
 print(ev)
 PCA_ev = data.frame(ev)
-write.csv(PCA_ev, "PCA_ev_240122.csv")
+write.csv(PCA_ev, "RNSGrowth_PCA_ev.csv")  #export explained variance for each principal component into a csv file
 
-
-sco = pca.WGS$variates   #prinicipal component values
+sco = pca.RNS$variates   #prinicipal component values
 print(sco)
-sco_PC = data.frame(SampleNo = WGS_biofilm_0410$Sample, sco)
-write.csv(sco_PC, "PCA_PC_240122.csv")
+sco_PC = data.frame(SampleNo = RNS_Growth$Sample, sco)
+write.csv(sco_PC, "RNS_Growth_PCA_PC.csv")  #export the principal component values into a csv file
+
+#Exported csv files will be used for further data analyses and drawing figures in Excel, Prism, and R programming
+#End#
