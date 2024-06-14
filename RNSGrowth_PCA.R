@@ -1,4 +1,4 @@
-#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis strain for determining its growth-associated transcriptomic changes tirggered by Klebsiella pneumoniae strain in CAUTI polymicrobial community.
+#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis for determining its growth-associated transcriptomic changes tirggered by Klebsiella pneumoniae in CAUTI polymicrobial community.
 #Beign#
 
 library(knitr)
@@ -6,7 +6,7 @@ library(mixOmics)
 library(dplyr)
 library(stats)
 
-RNS_Growth = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open csv file "RNSGrowth_PCA" containing gene differential expression data of E. faecalis strain
+RNS_Growth = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open csv file "RNSGrowth_PCA" containing gene differential expression data of E. faecalis
 
 X = RNS_Growth[, 1:2947]  
 X_mean = apply(X, 2, mean)
