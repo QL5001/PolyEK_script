@@ -1,4 +1,4 @@
-#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis strain for determining its biofilm-associated transcriptomic changes tirggered by Klebsiella pneumoniae strain in CAUTI polymicrobial community.
+#Principal component analysis (PCA) on the RNASeq data of Enterococcus faecalis for determining its biofilm-associated transcriptomic changes tirggered by Klebsiella pneumoniae in CAUTI polymicrobial community.
 #Beign#
 
 library(knitr)
@@ -6,7 +6,7 @@ library(mixOmics)
 library(dplyr)
 library(stats)
 
-RNS_Bioilm = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open csv file "RNSBiofilm_PCA" containing gene differential expression data of E. faecalis strain
+RNS_Bioilm = read.csv(file = file.choose(), sep = ",", header = TRUE, stringsAsFactors = FALSE)    #open csv file "RNSBiofilm_PCA" containing gene differential expression data of E. faecalis
 
 X = RNS_Biofilm[, 1:2972]  
 X_mean = apply(X, 2, mean)
