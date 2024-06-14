@@ -14,12 +14,12 @@ X_center = scale(X, center = X_mean, scale = FALSE)
 Y = RNS_Growth$Sample
 
 pca.RNS = pca(X_center, ncomp = 6, center = FALSE, scale = FALSE)
-plot(pca.RNS, ylim = c(0, 0.8), main = "PCA on WGS")
+plot(pca.RNS, ylim = c(0, 0.8), main = "PCA on RNSGrowth")
 
 ev = pca.RNS$prop_expl_var   #explained_variance
 print(ev)
 PCA_ev = data.frame(ev)
-write.csv(PCA_ev, "RNSGrowth_PCA_ev.csv")  #export explained variance for each principal component into a csv file
+write.csv(PCA_ev, "RNS_Growth_PCA_ev.csv")  #export explained variance for each principal component into a csv file
 
 sco = pca.RNS$variates   #prinicipal component values
 print(sco)
